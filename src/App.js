@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import json from "./pre-genesis.json";
 
 
 function App() {
   const [address, setAddress] = useState("");
-  const [totalReward, setTotalReward] = useState(0);
   // const [mediumReward, setMediumReward] = useState({});
 
   const handleInputChange = (event) => {
@@ -33,21 +32,8 @@ function App() {
     });
   }
 
-  useEffect(() => {
-    let totalReward = 0;
-    for (const balance of json.app_state.bank.balances) {
-      if (balance.coins[0].amount > 0) {
-        totalReward += balance.coins[0].amount / 1000_000;
-      }
-    }
-    setTotalReward(totalReward);
-  }, []);
 
-  const displayReward = formatNumber(totalReward, 4) + " TIA";
-  const displayEligibleWallets = formatNumber(
-    json.app_state.bank.balances.length,
-    0
-  );
+
 
   // if (mediumReward && mediumReward.coins)
   //   var displayMediumReward = formatNumber(mediumReward.coins[0].amount / 1000_000, 2) + " TIA";
@@ -64,7 +50,7 @@ function App() {
       />
       <button onClick={handleSubmit}>Submit</button>
 
-      <div className="card">
+      {/* <div className="card">
         <h2>Total Reward</h2>
         <p>{displayReward}</p>
       </div>
@@ -72,7 +58,7 @@ function App() {
       <div className="card">
         <h2>Total Eligible Wallets</h2>
         <p>{displayEligibleWallets}</p>
-      </div>
+      </div> */}
 
       {/* <div className="card">
         <h2>Lowest Reward</h2>
